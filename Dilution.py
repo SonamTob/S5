@@ -22,7 +22,7 @@ PBS_VOL = 100      # uL PBS into columns 2-12
 VOL = 100          # uL moved column to column
 MIX_VOL = 120      # uL
 MIX_REPS = 3
-
+TOUCH_SPEED = 20   # mm/s for touch tip (Opentrons default is 60; lower = gentler)
 
 def run(protocol: protocol_api.ProtocolContext):
 
@@ -49,7 +49,6 @@ def run(protocol: protocol_api.ProtocolContext):
         # slow aspirate, short pause so liquid settles, slow exit so no drops cling
         p300.aspirate(vol, well.bottom(height), rate=0.5)
         protocol.delay(seconds=0.5)
-        p300.move_to(well.top(-2), speed=10)
 
     def mix(well):  ## Although, Opentrons have a built-in mix command, we set separate aspirate and dispense rates to avoid splashing and bubbles. 
         # slow up, fast down to mix; last stroke slow so the tip drains
@@ -77,7 +76,7 @@ def run(protocol: protocol_api.ProtocolContext):
     # 3. Serial dilution: 100 uL column 1 -> 2 -> ... -> 11, mix 3x each time
     for i in range(10):
         take(VOL, cols[i], 1)
-        p300.touch_tip(cols[i], v_offset=-2, radius=0.8)       # wipe outside of tip
+        p300.touch_tip(cols[i], v_offset=-2, radius=0.8, speed=TOUCH_SPEED)  # gentle wipe
         p300.dispense(VOL, cols[i + 1].bottom(1.5), rate=0.5, push_out=0)  # below surface
         mix(cols[i + 1])
 
