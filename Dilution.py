@@ -37,7 +37,7 @@ def run(protocol: protocol_api.ProtocolContext):
     p300.flow_rate.blow_out = 150
 
     pbs = reservoir["A1"]          # >= 12 mL 1X PBS
-    dye = reservoir["A2"]          # >= 3 mL 10 uM fluorescein
+    dye = reservoir["A3"]          # >= 3 mL 10 uM fluorescein
     waste = reservoir["A12"]       # empty, liquid waste
     cols = plate.rows()[0]         # A1..A12 (8-channel does the whole column A-H)
 
