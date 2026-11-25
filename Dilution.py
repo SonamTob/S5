@@ -12,8 +12,8 @@ metadata = {
 ###Settings (check these in the lab) 
 DRY_RUN = False                      # True = no liquid, tips go back in the rack
 
-RESERVOIR = "4ti0131_12_reservoir_21000ul" 
-PLATE = "corning_96_wellplate_360ul_flat"
+RESERVOIR = "4ti0131_12_reservoir_21000ul"  
+PLATE = "costar3370flatbottomtransparent_96_wellplate_200ul"
 TIPS = "opentrons_96_tiprack_300ul"
 MOUNT = "left"                       # side the 8-channel pipette is on
 
